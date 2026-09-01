@@ -18,12 +18,16 @@
        - `sync_push.ps1`：整合匯出、狀態檢查、Git Commit 與 Git Push 的日常一鍵同步腳本。
   3. **儲存庫初始化與首度提交 (Initial Commit)**：
      - 初始化 `main` 主分支，完整納入 475 個專案檔案、行政規範、教學講義與 70 多項已安裝之外掛 Skills。
+  4. **客製化對話技能建置 (Custom Skill)**：
+     - 建立專屬技能 `antigravity-github-sync`，支援自然語言觸發（例如「我要同步到 GitHub」、「從 GitHub 取回設定」），實現一鍵雙向同步與自動還原。
 - **異動與產出檔案清單**：
   - [NEW] `.gitignore` (專案根目錄忽略清單)
+  - [NEW] `.agents/skills/antigravity-github-sync/SKILL.md` (專案專屬同步技能)
+  - [NEW] `C:\Users\User\.gemini\config\skills\antigravity-github-sync\SKILL.md` (全域專屬同步技能)
   - [NEW] `scripts/export_config.ps1` (全域設定與外掛匯出腳本)
   - [NEW] `scripts/import_config.ps1` (全域設定與外掛匯入還原腳本)
   - [NEW] `scripts/sync_push.ps1` (一鍵打包推送腳本)
-  - [NEW] `_antigravity_config/` (存放 `config.json`, `mcp_config.json`, `plugins/`)
+  - [NEW] `_antigravity_config/` (存放 `config.json`, `mcp_config.json`, `plugins/`, `skills/`)
 - **驗證狀態**：
   - 成功執行 `export_config.ps1`，順利同步 6 個主要外掛與 70+ 個 Skills 模組。
   - 完成 Git 初次提交 (Commit `feat: 初始化 Antigravity 工作區、規範與全域設定同步模組`)。
