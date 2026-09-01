@@ -15,7 +15,8 @@
         "command(python)",
         "command(where)",
         "command(winget)",
-        "command(powershell)"
+        "command(powershell)",
+        "read_url(github.com)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
