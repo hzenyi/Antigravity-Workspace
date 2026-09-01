@@ -9,12 +9,13 @@
         "command(py -c '\nimport json\nwith open(\"sensebar_matched.json\", \"r\", encoding=\"utf-8\") as f:\n    data = json.load(f)\nmatched_ids = {item[\"id\"] for item in data[\"matched\"]}\n\nimport subprocess\ncmd = [\"yt-dlp\", \"--flat-playlist\", \"-J\", \"https://www.youtube.com/@sensebar/videos\"]\nres = subprocess.run(cmd, capture_output=True, text=True, encoding=\"utf-8\", errors=\"replace\")\nentries = json.loads(res.stdout).get(\"entries\", [])\n\nprint(\"Unmatched entries that might be related:\")\nrelated_words = [\"ai\", \"agent\", \"gpt\", \"code\", \"gemini\", \"cursor\", \"copilot\"]\nfor entry in entries:\n    if entry[\"id\"] not in matched_ids:\n        title = entry.get(\"title\", \"\")\n        lt = title.lower()\n        if any(w in lt for w in related_words):\n            print(f\"- {title} (id: {entry[\\\"id\\\"]})\")\n')",
         "command(py -c '\nimport json\nwith open(\"sensebar_target_videos.json\", \"r\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\nfor cat, vids in data[\"by_category\"].items():\n    print(f\"=== {cat} ({len(vids)}) ===\")\n    for v in vids:\n        print(f\"{v[\\\"title\\\"]} | {v[\\\"url\\\"]}\")\n')",
         "read_url(youtube.com)",
+        "command(git)",
         "command(npm)",
         "command(py)",
         "command(python)",
         "command(where)",
         "command(winget)",
-        "command(git)"
+        "command(powershell)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
