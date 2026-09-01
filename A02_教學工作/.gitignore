@@ -1,0 +1,23 @@
+# 學生個資與敏感隱私檔案
+*private*
+*confidential*
+*個資*
+*名冊*
+students_real_names.*
+grades_raw.*
+
+# 系統與編輯器暫存檔
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.vscode/
+.idea/
+
+# Office 暫存檔案
+~$*
+.~lock.*
+
+# 影音下載暫存目錄 (符合全域規範)
+downloads/
+

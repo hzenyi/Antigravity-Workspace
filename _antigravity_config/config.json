@@ -1,0 +1,24 @@
+{
+  "userSettings": {
+    "artifactReviewMode": "ARTIFACT_REVIEW_MODE_TURBO",
+    "autoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_EAGER",
+    "enableTerminalSandbox": false,
+    "globalPermissionGrants": {
+      "allow": [
+        "command(py -c '\nimport subprocess, json, sys\n\nsys.stdout.reconfigure(encoding=\"utf-8\")\nurl = \"https://www.youtube.com/@sensebar/videos\"\ncmd = [\"yt-dlp\", \"--flat-playlist\", \"-J\", url]\nprint(\"Fetching video list from @sensebar...\")\nres = subprocess.run(cmd, capture_output=True, text=True, encoding=\"utf-8\")\nif res.returncode != 0:\n    print(\"Error:\", res.stderr)\n    sys.exit(1)\n\ndata = json.loads(res.stdout)\nentries = data.get(\"entries\", [])\nprint(f\"Total videos found: {len(entries)}\")\n\nkeywords = [\"claude\", \"codex\", \"antigravity\", \"opencode\", \"open code\"]\nmatched = []\nfor entry in entries:\n    title = entry.get(\"title\", \"\")\n    video_id = entry.get(\"id\", \"\")\n    url = f\"https://www.youtube.com/watch?v={video_id}\"\n    lower_title = title.lower()\n    for kw in keywords:\n        if kw in lower_title:\n            matched.append((entry, kw))\n            break\n\nprint(f\"Matched videos: {len(matched)}\")\nfor entry, kw in matched:\n    print(f\"- [{kw}] {entry.get(\\\"title\\\")} -\u003e https://www.youtube.com/watch?v={entry.get(\\\"id\\\")}\")\n')",
+        "command(py -c '\nimport json\nwith open(\"sensebar_matched.json\", \"r\", encoding=\"utf-8\") as f:\n    data = json.load(f)\nmatched_ids = {item[\"id\"] for item in data[\"matched\"]}\n\nimport subprocess\ncmd = [\"yt-dlp\", \"--flat-playlist\", \"-J\", \"https://www.youtube.com/@sensebar/videos\"]\nres = subprocess.run(cmd, capture_output=True, text=True, encoding=\"utf-8\", errors=\"replace\")\nentries = json.loads(res.stdout).get(\"entries\", [])\n\nprint(\"Unmatched entries that might be related:\")\nrelated_words = [\"ai\", \"agent\", \"gpt\", \"code\", \"gemini\", \"cursor\", \"copilot\"]\nfor entry in entries:\n    if entry[\"id\"] not in matched_ids:\n        title = entry.get(\"title\", \"\")\n        lt = title.lower()\n        if any(w in lt for w in related_words):\n            print(f\"- {title} (id: {entry[\\\"id\\\"]})\")\n')",
+        "command(py -c '\nimport json\nwith open(\"sensebar_target_videos.json\", \"r\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\nfor cat, vids in data[\"by_category\"].items():\n    print(f\"=== {cat} ({len(vids)}) ===\")\n    for v in vids:\n        print(f\"{v[\\\"title\\\"]} | {v[\\\"url\\\"]}\")\n')",
+        "read_url(youtube.com)",
+        "command(npm)",
+        "command(py)",
+        "command(python)",
+        "command(where)",
+        "command(winget)",
+        "command(git)"
+      ]
+    },
+    "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
+    "remoteControlHostname": "desktop-1e1rhu0-blazing-planet",
+    "themeMode": "THEME_MODE_INHERIT"
+  }
+}

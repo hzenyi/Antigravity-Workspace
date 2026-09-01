@@ -1,0 +1,55 @@
+# ==========================================
+# Antigravity 專案全域 Git 忽略清單 (.gitignore)
+# ==========================================
+
+# 1. 資訊安全與個資防護
+*.env
+*.env.*
+*.key
+*.pem
+*.cert
+*.pfx
+*private*
+*confidential*
+*個資*
+*名冊*
+students_real_names.*
+grades_raw.*
+
+# 2. 外部下載與大檔暫存 (符合全域規範，禁止提交)
+downloads/
+**/downloads/
+*.mp4
+*.mp3
+*.wav
+*.zip
+*.tar.gz
+*.7z
+
+# 3. 程式語言與開發環境快取
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+node_modules/
+
+# 4. 作業系統與編輯器暫存
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.tmp
+*.log
+.vscode/
+.idea/
+
+# 5. Office 臨時鎖定檔
+~$*
+.~lock.*
+
+# 6. Antigravity 系統與對話暫存 (不可同步)
+brain/
+**/brain/
+*.lock

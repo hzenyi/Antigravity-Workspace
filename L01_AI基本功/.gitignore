@@ -1,0 +1,17 @@
+# 影音與下載暫存目錄
+downloads/
+*.mp4
+*.mp3
+*.part
+*.ytdl
+
+# 環境變數與機密
+.env
+.env.*
+!.env.example
+
+# 作業系統與暫存檔
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.tmp
