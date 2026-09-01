@@ -20,6 +20,9 @@
      - 初始化 `main` 主分支，完整納入 475 個專案檔案、行政規範、教學講義與 70 多項已安裝之外掛 Skills。
   4. **客製化對話技能建置 (Custom Skill)**：
      - 建立專屬技能 `antigravity-github-sync`，支援自然語言觸發（例如「我要同步到 GitHub」、「從 GitHub 取回設定」），實現一鍵雙向同步與自動還原。
+  5. **導入台灣正式公文與文書撰寫技能 (`tw-formal-writing`)**：
+     - 整合開源專案 [Imbad0202/tw-formal-writing](https://github.com/Imbad0202/tw-formal-writing)，完整部署台灣《文書處理手冊》規範之公文（簽、函、令、呈）、行政非公文（會議紀錄、開會通知、業務計畫）、法律文件（存證信函、契約）及陳情訴願書撰寫規則與品質檢核模組。
+     - 同時配置至全域目錄、工作區 `.agents/skills/` 與雙機同步備份庫中，並自動推送到 GitHub 私有庫。
 - **異動與產出檔案清單**：
   - [NEW] `.gitignore` (專案根目錄忽略清單)
   - [NEW] `.agents/skills/antigravity-github-sync/SKILL.md` (專案專屬同步技能)
