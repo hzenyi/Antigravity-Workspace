@@ -4,6 +4,32 @@
 
 ---
 
+## [2026-09-01] Antigravity 雙機同步機制建置與全域設定模組化 (Git 方案一)
+
+- **任務背景**：
+  為實現使用者在兩台電腦間無縫同步 Antigravity 工作區、教學資源、自訂規範與全域設定檔（`config.json`, `plugins/`, `skills/` 等），採用軟體工程標準做法「Git 私有倉庫 + 一鍵自動化腳本」進行架構升級。
+- **執行內容與技術關鍵**：
+  1. **全域安全與版本控制規則建立**：
+     - 於根目錄 `D:\Antigravity` 建立完整的 `.gitignore`，嚴格排除敏感個資、金鑰密碼 (`.env`)、影音下載暫存 (`downloads/`)、Python 快取 (`__pycache__/`) 與編輯器暫存。
+  2. **自動化備份與匯入工具開發**：
+     - 於 `scripts/` 開發 PowerShell 自動化工具鏈（採用 UTF-8 BOM 編碼確保跨 Windows 環境相容）：
+       - `export_config.ps1`：一鍵將本機 `~/.gemini/config/` 安全複製備份至專案目錄 `_antigravity_config/`。
+       - `import_config.ps1`：在第二台電腦上一鍵將 `_antigravity_config/` 部署還原至 `~/.gemini/config/`，並自動建立舊設定之安全快照。
+       - `sync_push.ps1`：整合匯出、狀態檢查、Git Commit 與 Git Push 的日常一鍵同步腳本。
+  3. **儲存庫初始化與首度提交 (Initial Commit)**：
+     - 初始化 `main` 主分支，完整納入 475 個專案檔案、行政規範、教學講義與 70 多項已安裝之外掛 Skills。
+- **異動與產出檔案清單**：
+  - [NEW] `.gitignore` (專案根目錄忽略清單)
+  - [NEW] `scripts/export_config.ps1` (全域設定與外掛匯出腳本)
+  - [NEW] `scripts/import_config.ps1` (全域設定與外掛匯入還原腳本)
+  - [NEW] `scripts/sync_push.ps1` (一鍵打包推送腳本)
+  - [NEW] `_antigravity_config/` (存放 `config.json`, `mcp_config.json`, `plugins/`)
+- **驗證狀態**：
+  - 成功執行 `export_config.ps1`，順利同步 6 個主要外掛與 70+ 個 Skills 模組。
+  - 完成 Git 初次提交 (Commit `feat: 初始化 Antigravity 工作區、規範與全域設定同步模組`)。
+
+---
+
 ## [2026-08-31] YouTube 教學影片 1080P 下載與專業繁體中文字幕轉譯校對
 
 - **任務背景**：
