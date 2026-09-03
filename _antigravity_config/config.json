@@ -16,10 +16,12 @@
         "command(where)",
         "command(winget)",
         "command(powershell)",
-        "read_url(github.com)"
+        "read_url(github.com)",
+        "read_url(prodocs.lceda.cn)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
+    "remoteControlEnabled": true,
     "remoteControlHostname": "desktop-1e1rhu0-blazing-planet",
     "themeMode": "THEME_MODE_INHERIT"
   }

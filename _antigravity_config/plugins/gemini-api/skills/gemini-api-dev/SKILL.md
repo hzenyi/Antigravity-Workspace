@@ -15,13 +15,17 @@ description: Use this skill when building applications with Gemini API hosted mo
 - `gemini-3.7-flash`: 1M tokens, fast, balanced performance for agentic and multimodal tasks
 - `gemini-3.5-flash-lite`: 1M tokens, fastest, lowest-cost 3.5 model for high-throughput execution
 - `gemini-3.1-pro-preview`: 1M tokens, complex reasoning, coding, research
+- `gemini-3.5-transcribe`: fast speech-to-text with smart and verbatim modes
 - `gemini-3-pro-image-preview` (Nano Banana Pro): 65k / 32k tokens, image generation and editing
 - `gemini-3.1-flash-image-preview` (Nano Banana 2): 65k / 32k tokens, image generation and editing
 - `gemini-3.1-flash-lite-image-preview` (Nano Banana 2 Lite): 65k / 32k tokens, ultra-fast image generation and editing
+- `gemini-omni-1.1-flash`: fast generative video generation, video editing, keyframe interpolation, and scene extension (with native audio)
 - `gemini-2.5-pro`: 1M tokens, complex reasoning, coding, research
 - `gemini-2.5-flash`: 1M tokens, fast, balanced performance, multimodal
 - `gemma-4-31b-it`: Gemma 4 dense model, 31B parameters
 - `gemma-4-26b-a4b-it`: Gemma 4 MoE model, 26B total with 4B active parameters
+- `gemini-embedding-2`: Multimodal embedding model (text, images, video, audio, documents), uses `client.models.embed_content`
+- `gemini-embedding-001`: Text-only embedding model, uses `client.models.embed_content`
 
 > [!WARNING]
 > Models like `gemini-2.0-*`, `gemini-1.5-*` are **legacy and deprecated**. Never use them.
@@ -129,11 +133,11 @@ public class GenerateTextFromTextInput {
 
 ### When MCP is Installed (Preferred)
 
-If the **`search_docs`** tool (from the Google MCP server) is available, use it as your **only** documentation source:
+If the **`gemini_search_docs`** tool (or **`search_docs`**) is available, use it as your **only** documentation source:
 
-1. Call `search_docs` with your query
+1. Call `gemini_search_docs` with your query (or use `gemini_get_doc` to retrieve a specific doc path)
 2. Read the returned documentation
-2. **Trust MCP results** as source of truth for API details — they are always up-to-date.
+3. **Trust MCP results** as source of truth for API details — they are always up-to-date.
 
 > [!IMPORTANT]
 > When MCP tools are present, **never** fetch URLs manually. MCP provides up-to-date, indexed documentation that is more accurate and token-efficient than URL fetching.
@@ -152,8 +156,10 @@ Key pages:
 - [Text generation](https://ai.google.dev/gemini-api/docs/text-generation.md.txt)
 - [Function calling](https://ai.google.dev/gemini-api/docs/function-calling.md.txt)
 - [Structured outputs](https://ai.google.dev/gemini-api/docs/structured-output.md.txt)
+- [Audio Transcription](https://ai.google.dev/gemini-api/docs/generate-content/transcribe.md.txt)
 - [Image generation](https://ai.google.dev/gemini-api/docs/image-generation.md.txt)
 - [Image understanding](https://ai.google.dev/gemini-api/docs/image-understanding.md.txt)
+- [Video generation & editing (Omni Flash)](https://ai.google.dev/gemini-api/docs/omni.md.txt)
 - [Embeddings](https://ai.google.dev/gemini-api/docs/embeddings.md.txt)
 - [SDK migration guide](https://ai.google.dev/gemini-api/docs/migrate.md.txt)
 
