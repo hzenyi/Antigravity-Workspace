@@ -44,6 +44,8 @@ desktop.ini
 *.log
 .vscode/
 .idea/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
 
 # 5. Office 臨時鎖定檔
 ~$*
