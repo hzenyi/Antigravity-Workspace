@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "教務處會議資料彙整與提報設定檔",
+  "meeting_info": {
+    "meeting_subject": "114學年度第1學期第2次行政會報",
+    "meeting_datetime": "114年9月18日（星期三）14:00",
+    "collection_deadline": "114年9月15日（星期一）12:00",
+    "review_deadline": "114年9月16日（星期二）16:00",
+    "special_reminders": "若有規章修訂提案務必檢附修訂前後對照表；各組請重點列報新學期重要推動業務與待辦期程。",
+    "target_office": "文書組"
+  },
+  "sections_order": [
+    {
+      "order": 1,
+      "name": "教學組",
+      "folder_name": "01_教學組",
+      "submitted": false,
+      "has_proposal": false,
+      "proposals": []
+    },
+    {
+      "order": 2,
+      "name": "註冊組",
+      "folder_name": "02_註冊組",
+      "submitted": false,
+      "has_proposal": false,
+      "proposals": []
+    },
+    {
+      "order": 3,
+      "name": "設備組",
+      "folder_name": "03_設備組",
+      "submitted": false,
+      "has_proposal": false,
+      "proposals": []
+    },
+    {
+      "order": 4,
+      "name": "課務組",
+      "folder_name": "04_課務組",
+      "submitted": false,
+      "has_proposal": false,
+      "proposals": []
+    },
+    {
+      "order": 5,
+      "name": "實驗研究組",
+      "folder_name": "05_實驗研究組",
+      "submitted": false,
+      "has_proposal": false,
+      "proposals": []
+    }
+  ],
+  "formatting_rules": {
+    "ban_group_numbers": true,
+    "hierarchy_reference": "d:/Antigravity/AGENTS.md",
+    "full_width_punctuation_only": true,
+    "require_comparison_table_for_regulations": true,
+    "word_font": "微軟正黑體",
+    "word_font_size": 14,
+    "line_spacing": "單行間距",
+    "page_margins_cm": {
+      "top": 1.0,
+      "bottom": 1.0,
+      "left": 1.0,
+      "right": 1.0
+    },
+    "preserve_blank_line_between_sections": true,
+    "use_word_auto_numbering": true,
+    "require_post_generation_verification": true,
+    "auto_fix_on_verification_failure": true
+  },
+  "output_files": {
+    "word_doc": "00_彙整定稿/教務處業務報告與提案彙整表.docx",
+    "pdf_doc": "00_彙整定稿/教務處業務報告與提案彙整表.pdf",
+    "cue_card_and_timetable": "00_彙整定稿/發言重點小卡與時程表.md"
+  }
+}
