@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Antigravity//Meeting Notice to Calendar//TW
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Taipei
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:CST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:s4jaolvi8o0tp7gl8t8ohheo9o@google.com
+DTSTAMP:20260908T093055Z
+DTSTART;TZID=Asia/Taipei:20260918T130000
+DTEND;TZID=Asia/Taipei:20260918T140000
+SUMMARY:115學年度第一學期第一次性別平等教育委員會議
+LOCATION:行政大樓二樓會議室
+DESCRIPTION:【會議時間】民國 115 年 9 月 18 日（五）13:00 - 14:00（西元 2026-09-18）\n【會議地點】行政大樓二樓會議室\n【主　　席】廖主任委員鴻銘\n【主辦單位】性別平等教育委員會（業務承辦：學務處許怡君護理師，分機 224）\n\n【會議主題與議程】\n事由：召開 115 學年度第一學期第一次性別平等教育委員會議\n議程：\n一、主席報告\n二、各處室性平工作報告\n三、討論議題\n四、臨時動議\n\n【出(列)席人員】\n• 出席委員：\n  林水深委員、黃正誼委員、黃宜弘委員、曾秋萍委員、施凡昱委員、張國榮委員、陳姚萍委員、林雅真委員、黃任宜委員、王俞婷委員、楊珺安委員、連浩任委員、楊芙惠委員、林曉琦委員\n• 列席人員：\n  龍智毫主任、吳建鋒主任、王美智主任、紀庭翔主任\n• 工作人員：\n  呂昭明技士、黃郁綾校安人員、陳嘉惠校安人員、柯昱汝校安人員\n\n【注意事項與備忘】\n※ 若有任何問題請洽業務承辦-學務處許怡君護理師（分機 224）。\n※ 開會通知日期：115.9.8\n※ 後續銜接 14:00 加拿大 OSSD 會面行程。
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: 115學年度第一學期第一次性別平等教育委員會議
+TRIGGER:-PT15M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: 115學年度第一學期第一次性別平等教育委員會議
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

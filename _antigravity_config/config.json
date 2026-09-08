@@ -20,7 +20,9 @@
         "read_url(prodocs.lceda.cn)",
         "mcp(google-calendar/list-calendars)",
         "mcp(google-calendar/create-event)",
-        "mcp(google-calendar/update-event)"
+        "mcp(google-calendar/update-event)",
+        "mcp(google-calendar/list-events)",
+        "mcp(google-calendar/delete-event)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",

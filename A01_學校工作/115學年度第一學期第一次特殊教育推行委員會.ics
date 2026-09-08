@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Antigravity//Meeting Notice to Calendar//TW
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Taipei
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:CST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:pvqn1p5rvqsnrk4pb9ad5abem8@google.com
+DTSTAMP:20260908T090425Z
+DTSTART;TZID=Asia/Taipei:20260921T120000
+DTEND;TZID=Asia/Taipei:20260921T130000
+SUMMARY:115學年度第一學期第一次特殊教育推行委員會
+LOCATION:教學暨行政大樓二樓會議室
+DESCRIPTION:【會議時間】民國 115 年 9 月 21 日（一）12:00 - 13:00（西元 2026-09-21）\n【會議地點】教學暨行政大樓二樓會議室\n【主　　席】主任委員 廖校長鴻銘\n【主辦單位】特殊教育推行委員會（學習中心，分機 204）\n\n【會議主題與事由】\n115學年度第一學期第一次特殊教育推行委員會\n\n【出(列)席人員】\n• 特殊教育推行委員會委員：\n  廖鴻銘校長(素)、黃正誼主任、林水深主任、曾秋萍主任(素)、黃宜弘主任、施凡昱主任、王美智主任、陳姚萍組長、賴威東組長、林雅真組長、盧佳信老師、劉晶老師、呂世河老師(素)、王如梅老師(素)、王俞婷老師、楊珺安老師、何子恆老師、陳育珊小姐、林山峰同學、許珈瑗同學\n• 列席人員：\n  郭子鋐老師、楊濘綺老師、張惠竹助理\n\n【注意事項與備忘】\n※ 備有便當，素食（廖鴻銘校長、曾秋萍主任、呂世河老師、王如梅老師）或請假不克與會者，請先連絡學習中心（分機 204）。\n※ 開會通知日期：115.9.8
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: 115學年度第一學期第一次特殊教育推行委員會
+TRIGGER:-PT15M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: 115學年度第一學期第一次特殊教育推行委員會
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR
