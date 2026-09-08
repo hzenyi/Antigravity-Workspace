@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Antigravity//Meeting Notice to Calendar//TW
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Taipei
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:CST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:76624a81-e833-4451-962c-cc2876297bef
+DTSTAMP:20260907T225640Z
+DTSTART;TZID=Asia/Taipei:20261005T090000
+DTEND;TZID=Asia/Taipei:20261005T170000
+SUMMARY:A3 數位素養增能研習
+LOCATION:實體/線上場次（詳見全國教師在職進修網）
+DESCRIPTION:【研習日期】2026-10-05（一）全天\n【研習主題】A3 數位素養增能研習\n【課程代碼】5709332（全國教師在職進修網）\n【主辦單位】彰師附工教務處（依教育部「AI人才方舟計畫」）\n【研習地點】實體/線上場次（依報名公告）\n\n【重要規範與備忘】\n※ 本校 115 學年度全校教師研習目標達成率須達 100%。\n※ 實體/線上場次僅此一波，請儘早完成報名。\n※ 若錯過本次場次，後續須自行至「教育部磨課師平臺（MOOCs）」完成線上選課與時數認證。
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: A3 數位素養增能研習
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

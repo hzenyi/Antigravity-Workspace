@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Antigravity//Meeting Notice to Calendar//TW
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Taipei
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:CST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:010cd187-e7a7-404b-9b9e-268e518e54de
+DTSTAMP:20260907T040156Z
+DTSTART;TZID=Asia/Taipei:20260909T120000
+DTEND;TZID=Asia/Taipei:20260909T130000
+SUMMARY:115學年度第一學期拔尖計畫授課教師說明會
+LOCATION:教學暨行政大樓二樓會議室
+DESCRIPTION:【會議時間】民國 115 年 9 月 9 日（三）12:00 - 13:00（西元 2026-09-09）\n【會議地點】教學暨行政大樓二樓會議室\n【主　　席】廖校長鴻銘\n【主辦單位】教務處\n\n【會議主題與議題】\n1. 115學年度第一學期拔尖計畫執行運作與時程討論。\n\n【出(列)席人員】\n• 教務處：黃主任正誼、陳組長姚萍\n• 授課教師：陳崇彥老師、黃宜弘老師、盧佳信老師、劉冠辰主任、李承弦老師、余能義老師、陳怡誠老師\n• 行政人員：林育瑜小姐、鄭羽鈞小姐 工讀生\n\n【注意事項與備忘】\n※ 備有便當。
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: 115學年度第一學期拔尖計畫授課教師說明會
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

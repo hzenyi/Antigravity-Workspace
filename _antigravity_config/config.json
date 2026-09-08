@@ -17,7 +17,10 @@
         "command(winget)",
         "command(powershell)",
         "read_url(github.com)",
-        "read_url(prodocs.lceda.cn)"
+        "read_url(prodocs.lceda.cn)",
+        "mcp(google-calendar/list-calendars)",
+        "mcp(google-calendar/create-event)",
+        "mcp(google-calendar/update-event)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
