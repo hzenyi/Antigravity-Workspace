@@ -22,7 +22,8 @@
         "mcp(google-calendar/create-event)",
         "mcp(google-calendar/update-event)",
         "mcp(google-calendar/list-events)",
-        "mcp(google-calendar/delete-event)"
+        "mcp(google-calendar/delete-event)",
+        "read_url(docs.google.com)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",

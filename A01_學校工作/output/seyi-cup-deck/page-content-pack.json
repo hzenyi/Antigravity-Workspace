@@ -1,0 +1,438 @@
+{
+    "pages":  [
+                  {
+                      "id":  "page-1",
+                      "presentation":  {
+                                           "summary":  {
+                                                           "full":  "彰師附工文薈廳｜高科大教授團隊與協易機械專題分享",
+                                                           "short":  "高科大暨協易機械蒞校專題"
+                                                       },
+                                           "coreMessage":  "鏈結頂尖學府與全球大廠，引領附工學子邁向智慧製造與伺服成形前沿舞台",
+                                           "pageIntent":  "cover",
+                                           "title":  {
+                                                         "full":  "2026 協易盃 大手攜小手 專題演講",
+                                                         "short":  "協易盃專題演講"
+                                                     },
+                                           "items":  [
+                                                         {
+                                                             "label":  "演講時間",
+                                                             "detail":  {
+                                                                            "full":  "民國 115 年 9 月 10 日 10:00",
+                                                                            "short":  "115/09/10"
+                                                                        },
+                                                             "id":  "date",
+                                                             "displayValue":  "115.09.10",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "演講地點",
+                                                             "detail":  {
+                                                                            "full":  "彰師附工教學行政大樓 文薈廳",
+                                                                            "short":  "文薈廳"
+                                                                        },
+                                                             "id":  "loc",
+                                                             "displayValue":  "文薈廳",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "主講團隊",
+                                                             "detail":  {
+                                                                            "full":  "國立高雄科技大學 教授團隊",
+                                                                            "short":  "高科大"
+                                                                        },
+                                                             "id":  "speaker",
+                                                             "displayValue":  "高科大團隊",
+                                                             "required":  true
+                                                         }
+                                                     ]
+                                       }
+                  },
+                  {
+                      "id":  "page-2",
+                      "presentation":  {
+                                           "summary":  {
+                                                           "full":  "誠摯歡迎技職頂尖學府高科大與金屬成形領導大廠協易機械蒞臨指導",
+                                                           "short":  "產學頂尖團隊齊聚附工"
+                                                       },
+                                           "coreMessage":  "產學攜手深耕技職教育，搭建全國級工程競賽與技術實踐舞台",
+                                           "pageIntent":  "statement",
+                                           "title":  {
+                                                         "full":  "熱烈迎賓：高科大團隊與協易機械貴賓蒞校",
+                                                         "short":  "熱烈迎賓"
+                                                     },
+                                           "items":  [
+                                                         {
+                                                             "label":  "技職研發重鎮",
+                                                             "detail":  {
+                                                                            "full":  "國立高雄科技大學在鍛造、模具與塑性加工領域為全國首屈一指的研究殿堂",
+                                                                            "short":  "高科大塑性加工重鎮"
+                                                                        },
+                                                             "id":  "uni",
+                                                             "displayValue":  "首屈一指",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "產業龍頭夥伴",
+                                                             "detail":  {
+                                                                            "full":  "協易機械工業為全球排名前列的伺服沖床領導品牌，長期深耕產學人才培育",
+                                                                            "short":  "協易機械深耕培育"
+                                                                        },
+                                                             "id":  "ind",
+                                                             "displayValue":  "全球前列",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "培育實作基地",
+                                                             "detail":  {
+                                                                            "full":  "彰師附工機械群擁有全國最強的實作與模具加工底氣，為最佳參賽代表",
+                                                                            "short":  "附工機械群實作典範"
+                                                                        },
+                                                             "id":  "sch",
+                                                             "displayValue":  "全台最強",
+                                                             "required":  true
+                                                         }
+                                                     ]
+                                       }
+                  },
+                  {
+                      "id":  "page-3",
+                      "presentation":  {
+                                           "summary":  {
+                                                           "full":  "創立於 1962 年，上櫃大廠（4533），獲經濟部中堅企業與台灣精品金質獎肯定",
+                                                           "short":  "全球頂尖伺服沖床品牌"
+                                                       },
+                                           "coreMessage":  "立足台灣、放眼全球，以精湛工程技術名列全球前五大伺服沖床製造商",
+                                           "pageIntent":  "profile",
+                                           "title":  {
+                                                         "full":  "走進協易機械：六十載淬鍊的台灣之光與隱形冠軍",
+                                                         "short":  "走進協易機械"
+                                                     },
+                                           "items":  [
+                                                         {
+                                                             "id":  "hist",
+                                                             "label":  "一甲子底蘊",
+                                                             "displayValue":  "1962",
+                                                             "value":  1962,
+                                                             "required":  true,
+                                                             "detail":  {
+                                                                            "full":  "創立於 1962 年，逾 60 年金屬成形機械研發經驗，股票上櫃大廠",
+                                                                            "short":  "創立逾60年上櫃"
+                                                                        },
+                                                             "unit":  "年創立"
+                                                         },
+                                                         {
+                                                             "label":  "經濟部肯定",
+                                                             "detail":  {
+                                                                            "full":  "獲經濟部遴選為「潛力中堅企業」，表彰具備高技術門檻與國際競爭力",
+                                                                            "short":  "潛力中堅企業"
+                                                                        },
+                                                             "id":  "award1",
+                                                             "displayValue":  "中堅企業",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "最高榮譽",
+                                                             "detail":  {
+                                                                            "full":  "伺服沖床系列榮獲台灣產業界最高榮譽「台灣精品金質獎」與銀質獎",
+                                                                            "short":  "台灣精品金質獎"
+                                                                        },
+                                                             "id":  "award2",
+                                                             "displayValue":  "精品金質獎",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "id":  "rank",
+                                                             "label":  "全球前列",
+                                                             "displayValue":  "Top 5",
+                                                             "value":  5,
+                                                             "required":  true,
+                                                             "detail":  {
+                                                                            "full":  "與德、日齊名，名列全球前五大伺服沖床領導製造品牌",
+                                                                            "short":  "全球前五大品牌"
+                                                                        },
+                                                             "unit":  "全球前列"
+                                                         }
+                                                     ]
+                                       }
+                  },
+                  {
+                      "id":  "page-4",
+                      "presentation":  {
+                                           "coreMessage":  "將機械力學、伺服電機與數位控制融為一體，為電動車與航太新材料提供唯一解方",
+                                           "items":  [
+                                                         {
+                                                             "label":  "數位曲線編程",
+                                                             "detail":  {
+                                                                            "full":  "滑塊運動速度、停留與加壓路徑任意編程，接觸材料柔性加壓避免破裂",
+                                                                            "short":  "運動路徑自由編程"
+                                                                        },
+                                                             "id":  "curve",
+                                                             "displayValue":  "自由編程",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "先進材料攻克",
+                                                             "detail":  {
+                                                                            "full":  "完美成型超高張力鋼板（UHSS）、鋁鎂合金與鈦合金，消除嚴重回彈現象",
+                                                                            "short":  "攻克高張力鋼與鋁"
+                                                                        },
+                                                             "id":  "mat",
+                                                             "displayValue":  "消除回彈",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "電動車心臟",
+                                                             "detail":  {
+                                                                            "full":  "電動車電池外殼、車體輕量化結構與燃料電池金屬雙極板的核心加工設備",
+                                                                            "short":  "電動車關鍵零組件"
+                                                                        },
+                                                             "id":  "ev",
+                                                             "displayValue":  "EV核心設備",
+                                                             "required":  true
+                                                         }
+                                                     ],
+                                           "pageIntent":  "framework",
+                                           "summary":  {
+                                                           "full":  "跳脫傳統機械曲柄限制，可自由編程數位曲線，攻克先進材料成型極限",
+                                                           "short":  "數位曲線成形利器"
+                                                       },
+                                           "title":  {
+                                                         "full":  "技術革命：伺服沖床如何顛覆現代金屬成型？",
+                                                         "short":  "伺服沖床技術革命"
+                                                     },
+                                           "media":  [
+                                                         {
+                                                             "alt":  "先進伺服沖床智能產線",
+                                                             "kind":  "image",
+                                                             "type":  "image/jpeg",
+                                                             "src":  "assets/user-media/seyi-servo-press-1788962145184.jpg"
+                                                         }
+                                                     ]
+                                       }
+                  },
+                  {
+                      "id":  "page-5",
+                      "presentation":  {
+                                           "coreMessage":  "軟著陸技術讓模具壽命延長2至3倍，電能回生搭配鐘擺模式節省超過50%電力",
+                                           "items":  [
+                                                         {
+                                                             "id":  "esg",
+                                                             "label":  "電能回生儲能",
+                                                             "displayValue":  "50%",
+                                                             "value":  50,
+                                                             "required":  true,
+                                                             "detail":  {
+                                                                            "full":  "具備專利電能回生技術與鐘擺沖壓模式，相較傳統沖床節能超過 50%",
+                                                                            "short":  "節電超過50%"
+                                                                        },
+                                                             "unit":  "節能"
+                                                         },
+                                                         {
+                                                             "id":  "mold-life",
+                                                             "label":  "延長模具壽命",
+                                                             "displayValue":  "2-3倍",
+                                                             "value":  3,
+                                                             "required":  true,
+                                                             "detail":  {
+                                                                            "full":  "接觸工件前瞬間減速軟著陸，降低震動衝擊，模具壽命大幅延長 2～3 倍",
+                                                                            "short":  "壽命延長2~3倍"
+                                                                        },
+                                                             "unit":  "壽命"
+                                                         },
+                                                         {
+                                                             "label":  "一級供應鏈",
+                                                             "detail":  {
+                                                                            "full":  "成功切入歐美日一級國際車廠（Tier 1）與全球航太關鍵零組件供應鏈",
+                                                                            "short":  "歐美日一級車廠"
+                                                                        },
+                                                             "id":  "chain",
+                                                             "displayValue":  "Tier 1鏈",
+                                                             "required":  true
+                                                         }
+                                                     ],
+                                           "chartData":  [
+                                                             {
+                                                                 "label":  "電力節省比例",
+                                                                 "displayValue":  "50",
+                                                                 "id":  "energy",
+                                                                 "value":  50,
+                                                                 "unit":  "%"
+                                                             },
+                                                             {
+                                                                 "label":  "模具壽命提升",
+                                                                 "displayValue":  "2.5",
+                                                                 "id":  "mold",
+                                                                 "value":  250,
+                                                                 "unit":  "倍"
+                                                             },
+                                                             {
+                                                                 "label":  "產能提升幅度",
+                                                                 "displayValue":  "1.8",
+                                                                 "id":  "speed",
+                                                                 "value":  180,
+                                                                 "unit":  "倍"
+                                                             }
+                                                         ],
+                                           "pageIntent":  "comparison",
+                                           "summary":  {
+                                                           "full":  "專利電能回生與軟著陸技術，兼顧 ESG 淨零碳排與生產成本大幅降低",
+                                                           "short":  "綠色ESG低碳標竿"
+                                                       },
+                                           "title":  {
+                                                         "full":  "綠色製造與模具守護：節能 50% 與模具壽命躍升",
+                                                         "short":  "節能與模具守護"
+                                                     },
+                                           "media":  [
+                                                         {
+                                                             "alt":  "精密沖壓成型與高精度檢測",
+                                                             "kind":  "image",
+                                                             "type":  "image/jpeg",
+                                                             "src":  "assets/user-media/stamped-precision-parts-1788962169346.jpg"
+                                                         }
+                                                     ]
+                                       }
+                  },
+                  {
+                      "id":  "page-6",
+                      "presentation":  {
+                                           "summary":  {
+                                                           "full":  "破除學制藩籬，由科大師生攜手高中職組隊，將高階研究降階轉化實作",
+                                                           "short":  "科大攜手高中職組隊"
+                                                       },
+                                           "coreMessage":  "大專科大帶領高中職，直接對接全球大廠設備技術與真實製造痛點",
+                                           "pageIntent":  "process",
+                                           "title":  {
+                                                         "full":  "2026 協易盃重磅登場：大手攜小手～跨學制創新競賽",
+                                                         "short":  "2026協易盃核心亮點"
+                                                     },
+                                           "items":  [
+                                                         {
+                                                             "label":  "大手引領",
+                                                             "detail":  {
+                                                                            "full":  "科技大學/大專師生擔任大手，提供 CAE 模擬、理論架構與研究量能支撐",
+                                                                            "short":  "科大研究資源支援"
+                                                                        },
+                                                             "id":  "big-hand",
+                                                             "displayValue":  "科大引領",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "小手實作",
+                                                             "detail":  {
+                                                                            "full":  "高中職學生發揮第一線模具實作與加工底氣，共同完成專案解題",
+                                                                            "short":  "高中職實作解題"
+                                                                        },
+                                                             "id":  "small-hand",
+                                                             "displayValue":  "附工動手",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "自由發想",
+                                                             "detail":  {
+                                                                            "full":  "圍繞伺服沖壓與模具製造痛點自由命題，AI 可作為輔助工具落地應用",
+                                                                            "short":  "產業痛點自主解題"
+                                                                        },
+                                                             "id":  "topic",
+                                                             "displayValue":  "自由命題",
+                                                             "required":  true
+                                                         }
+                                                     ]
+                                       }
+                  },
+                  {
+                      "id":  "page-7",
+                      "presentation":  {
+                                           "summary":  {
+                                                           "full":  "報名截止期限就在 115 年 9 月 30 日！鼓勵附工同學積極組隊、展現實力",
+                                                           "short":  "報名截止 9/30"
+                                                       },
+                                           "coreMessage":  "為學習歷程檔案增添最具含金量的成果，讓全國看見彰師附工的頂尖工科底氣",
+                                           "pageIntent":  "breakdown",
+                                           "title":  {
+                                                         "full":  "參賽動員與關鍵時限：倒數啟動，把握全國級躍升跳板",
+                                                         "short":  "參賽動員與關鍵時限"
+                                                     },
+                                           "items":  [
+                                                         {
+                                                             "id":  "deadline",
+                                                             "label":  "報名截止日",
+                                                             "displayValue":  "9月30日",
+                                                             "priority":  "high",
+                                                             "required":  true,
+                                                             "detail":  {
+                                                                            "full":  "競賽報名截止日期為 115 年 9 月 30 日，請把握最後關鍵報名週",
+                                                                            "short":  "115.09.30 截止"
+                                                                        }
+                                                         },
+                                                         {
+                                                             "label":  "學習歷程利器",
+                                                             "detail":  {
+                                                                            "full":  "結合理論、實作、跨校合作與產業大廠背書，打造最強多元表現證明",
+                                                                            "short":  "升學最強學習歷程"
+                                                                        },
+                                                             "id":  "port",
+                                                             "displayValue":  "含金量高",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "附工積極行動",
+                                                             "detail":  {
+                                                                            "full":  "機械群各科師生會後主動向高科大教授團隊請益，媒合組隊名單",
+                                                                            "short":  "會後積極主動請益"
+                                                                        },
+                                                             "id":  "action",
+                                                             "displayValue":  "主動組隊",
+                                                             "required":  true
+                                                         }
+                                                     ]
+                                       }
+                  },
+                  {
+                      "id":  "page-8",
+                      "presentation":  {
+                                           "summary":  {
+                                                           "full":  "再次感謝高科大教授團隊與協易機械貴賓，正式將主持棒交給主講貴賓",
+                                                           "short":  "熱烈掌聲歡迎主講"
+                                                       },
+                                           "coreMessage":  "全神貫注吸收前瞻新知，勇敢挑戰全國舞台，展現彰師附工卓越專業！",
+                                           "pageIntent":  "closing",
+                                           "title":  {
+                                                         "full":  "產學攜手・領航未來：預祝專題演講圓滿成功",
+                                                         "short":  "引言交棒熱烈開場"
+                                                     },
+                                           "items":  [
+                                                         {
+                                                             "label":  "專注聆聽",
+                                                             "detail":  {
+                                                                            "full":  "把握寶貴的一小時，深度了解伺服沖壓趨勢與賽事規範",
+                                                                            "short":  "全神貫注汲取新知"
+                                                                        },
+                                                             "id":  "listen",
+                                                             "displayValue":  "拓展視野",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "勇敢跨越",
+                                                             "detail":  {
+                                                                            "full":  "打破校園框架，與科大學長姐並肩作戰，爭取全國桂冠榮耀",
+                                                                            "short":  "挑戰全國最高榮譽"
+                                                                        },
+                                                             "id":  "team",
+                                                             "displayValue":  "爭取佳績",
+                                                             "required":  true
+                                                         },
+                                                         {
+                                                             "label":  "掌聲歡迎",
+                                                             "detail":  {
+                                                                            "full":  "以最熱烈、最誠摯的掌聲，將時間交給今天的高科大主講團隊",
+                                                                            "short":  "熱烈掌聲交棒主講"
+                                                                        },
+                                                             "id":  "handover",
+                                                             "displayValue":  "掌聲歡迎",
+                                                             "required":  true
+                                                         }
+                                                     ]
+                                       }
+                  }
+              ]
+}
