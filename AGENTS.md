@@ -89,7 +89,11 @@
 
 ## 4. 版本控制與專案歷程規範 (Git & HISTORY.md)
 
-### 4.1 Git Commit 規範 (Conventional Commits)
+### 4.1 遠端代碼儲存庫 (GitHub Remote)
+- **專案 GitHub 倉庫網址**：https://github.com/hzenyi/Antigravity-Workspace
+- **分支規範**：主線分支為 `main`，本工作區之所有正式產出、各領域設定與教材文檔，均以此遠端倉庫作為主要備份與跨機同步基準點。
+
+### 4.2 Git Commit 規範 (Conventional Commits)
 提交訊息一律遵循 Conventional Commits 格式：
 - `feat:` 新增功能、教材章節或模組
 - `fix:` 修復問題或除錯
@@ -99,7 +103,7 @@
 - `sync:` 跨機設定檔或 Skills 同步
 - `chore:` 建置設定、依賴更新或工具鏈維護
 
-### 4.2 專案歷程記錄規範 (HISTORY.md)
+### 4.3 專案歷程記錄規範 (HISTORY.md)
 每個核心領域目錄（`01_行政`、`02_教學`、`03_程式`）均必須維護專屬之 `HISTORY.md`：
 - **更新時機**：完成具里程碑意義之產出、架構重構或重大除錯後，必須即時更新對應目錄的 `HISTORY.md`。
 - **單次紀錄要件**：時間序號、背景需求、實作細節/關鍵技術、異動檔案清單、驗證狀態。
