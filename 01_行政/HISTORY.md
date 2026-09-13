@@ -2,6 +2,26 @@
 
 本檔案依據全域規範記錄 `01_行政` 之重大需求變更、里程碑產出、協作規範優化與系統迭代。
 
+## [v2.8.11] 2026-09-14T01:38:00+08:00
+### 工作背景與任務需求
+- 實測並打通 Google Calendar 原生 API 直接寫入能力，徹底解決 MCP 工具相容性與命令執行限制。
+- 固化 `meeting-notice-to-calendar` 技能規範，全面移除過渡性 `.ics` 檔案產出，達成真正的「無感背景雲端同步」。
+
+### 執行內容與技術關鍵
+- **建立專屬日曆直寫腳本**：
+  - 於 `.agents/skills/meeting-notice-to-calendar/scripts/` 建立 `add_calendar_event.js`。
+  - 採用原生 Node.js HTTPS 實作，零外部依賴。
+  - 內建自動換證機制（Token Refresh）：當 Access Token 過期時，自動透過 `gcp-oauth.keys.json` 與 Refresh Token 發送授權請求更新 `tokens.json`。
+- **更新 Skill 規範**：
+  - 更新 `meeting-notice-to-calendar/SKILL.md`，將直寫腳本設為標準處理流程，預設不再於工作區產生 `.ics` 暫存檔，確保工作區整潔。
+
+### 異動檔案清單
+- 新增：`.agents/skills/meeting-notice-to-calendar/scripts/add_calendar_event.js`
+- 更新：`.agents/skills/meeting-notice-to-calendar/SKILL.md`
+- 更新：`01_行政/HISTORY.md`
+
+---
+
 ## [v2.8.10] 2026-09-14T01:14:00+08:00
 ### 工作背景與任務需求
 - 萃取「115學年度彰化區免試入學委員會第三次工作小組會議紀錄」實戰格式（去內容化純骨架）。
