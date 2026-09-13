@@ -19,6 +19,8 @@ grades_raw.*
 # 2. 外部下載與大檔暫存 (符合全域規範，禁止提交)
 downloads/
 **/downloads/
+99_臨時性檔案/
+**/99_臨時性檔案/
 *.mp4
 *.mp3
 *.wav
