@@ -30,36 +30,61 @@ if (Test-Path $TargetConfigDir) {
     New-Item -ItemType Directory -Path $TargetConfigDir -Force | Out-Null
 }
 
-$ConfigFiles = @("config.json", "mcp_config.json")
-foreach ($file in $ConfigFiles) {
-    $srcPath = Join-Path $SourceBackupDir $file
-    if (Test-Path $srcPath) {
-        Copy-Item -Path $srcPath -Destination $TargetConfigDir -Force
-        Write-Host " [V] 已還原設定檔: $file" -ForegroundColor Green
-    }
+# 1. 還原設定檔與動態調整
+$ConfigFile = Join-Path $SourceBackupDir "config.json"
+if (Test-Path $ConfigFile) {
+    Copy-Item -Path $ConfigFile -Destination $TargetConfigDir -Force
+    Write-Host " [V] 已還原設定檔: config.json" -ForegroundColor Green
 }
 
+$McpFile = Join-Path $SourceBackupDir "mcp_config.json"
+if (Test-Path $McpFile) {
+    # 讀取並動態置換使用者路徑為當前電腦之 USERPROFILE
+    $mcpRaw = Get-Content $McpFile -Raw -Encoding UTF8
+    $escapedUser = $UserProfile.Replace('\', '\\')
+    # 將任何形如 C:\\Users\\...\\.config\\google-calendar-mcp 動態適應為當前本機路徑
+    $mcpFixed = [regex]::Replace($mcpRaw, 'C:\\\\Users\\\\[^\\]+\\\\.config\\\\google-calendar-mcp', "$escapedUser\\.config\\google-calendar-mcp")
+    $targetMcpPath = Join-Path $TargetConfigDir "mcp_config.json"
+    Set-Content -Path $targetMcpPath -Value $mcpFixed -Encoding UTF8
+    
+    # 確保 Google 日曆金鑰資料夾存在
+    $calConfigDir = Join-Path $UserProfile ".config\google-calendar-mcp"
+    if (-not (Test-Path $calConfigDir)) {
+        New-Item -ItemType Directory -Path $calConfigDir -Force | Out-Null
+    }
+    Write-Host " [V] 已還原並動態調整 MCP 設定: mcp_config.json" -ForegroundColor Green
+}
+
+# 2. 還原外掛 plugins/
 $SrcPluginsDir = Join-Path $SourceBackupDir "plugins"
 $TargetPluginsDir = Join-Path $TargetConfigDir "plugins"
 
 if (Test-Path $SrcPluginsDir) {
-    Write-Host " 正在還原外掛與 Skills (plugins/)..." -ForegroundColor Yellow
-    if (Test-Path $TargetPluginsDir) {
-        Remove-Item -Path $TargetPluginsDir -Recurse -Force
+    Write-Host " 正在還原外掛 (plugins/)..." -ForegroundColor Yellow
+    if (-not (Test-Path $TargetPluginsDir)) {
+        New-Item -ItemType Directory -Path $TargetPluginsDir -Force | Out-Null
     }
-    Copy-Item -Path $SrcPluginsDir -Destination $TargetPluginsDir -Recurse -Force
-    Write-Host " [V] 外掛與 Skills (plugins/) 還原完成！" -ForegroundColor Green
+    Copy-Item -Path "$SrcPluginsDir\*" -Destination $TargetPluginsDir -Recurse -Force
+    Write-Host " [V] 外掛 (plugins/) 還原完成！" -ForegroundColor Green
 }
 
+# 3. 還原自訂技能 skills/（同步至全域 ~/.gemini/config/skills 與專案 .agents/skills）
 $SrcSkillsDir = Join-Path $SourceBackupDir "skills"
 $TargetSkillsDir = Join-Path $TargetConfigDir "skills"
+$WorkspaceSkillsDir = Join-Path $RepoRoot ".agents\skills"
 
 if (Test-Path $SrcSkillsDir) {
-    if (Test-Path $TargetSkillsDir) {
-        Remove-Item -Path $TargetSkillsDir -Recurse -Force
+    Write-Host " 正在還原技能庫 (skills/)..." -ForegroundColor Yellow
+    if (-not (Test-Path $TargetSkillsDir)) {
+        New-Item -ItemType Directory -Path $TargetSkillsDir -Force | Out-Null
     }
-    Copy-Item -Path $SrcSkillsDir -Destination $TargetSkillsDir -Recurse -Force
-    Write-Host " [V] 自訂技能 (skills/) 還原完成！" -ForegroundColor Green
+    Copy-Item -Path "$SrcSkillsDir\*" -Destination $TargetSkillsDir -Recurse -Force
+
+    if (-not (Test-Path $WorkspaceSkillsDir)) {
+        New-Item -ItemType Directory -Path $WorkspaceSkillsDir -Force | Out-Null
+    }
+    Copy-Item -Path "$SrcSkillsDir\*" -Destination $WorkspaceSkillsDir -Recurse -Force
+    Write-Host " [V] 自訂技能 (skills/) 已同步還原至全域與專案工作區！" -ForegroundColor Green
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan

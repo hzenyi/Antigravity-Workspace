@@ -1,4 +1,4 @@
-﻿---
+---
 name: antigravity-github-sync
 description: 自動將 Antigravity 工作區、教案與全域設定檔（config.json、外掛與 Skills）同步至 GitHub，或從 GitHub 拉回最新進度並自動還原至本地電腦。當使用者說「我要同步到 GitHub」、「同步設定到 GitHub」、「備份到遠端」或「從 GitHub 取回設定」、「從 GitHub 更新」、「拉回本地端」時觸發使用。
 ---
@@ -25,11 +25,11 @@ description: 自動將 Antigravity 工作區、教案與全域設定檔（config
 當使用者指示要同步/備份到 GitHub 時，請依照以下步驟執行：
 
 1. **執行全域設定匯出**：
-   - 使用 `run_command` 執行匯出腳本：
+   - 使用 `run_command` 於工作區根目錄執行匯出腳本：
      ```powershell
-     powershell -ExecutionPolicy Bypass -File d:\Antigravity\scripts\export_config.ps1
+     powershell -ExecutionPolicy Bypass -File .\scripts\export_config.ps1
      ```
-   - 確保本機 `~/.gemini/config/` 中的最新設定檔與 Plugins/Skills 已複製至 `d:\Antigravity\_antigravity_config`。
+   - 確保本機 `~/.gemini/config/` 中的最新設定檔與 Plugins/Skills 已複製至 `_antigravity_config/`。
 2. **檢查 Git 狀態**：
    - 執行 `git status -s` 檢視變更項目。
    - 若無任何變更，主動告知使用者：「目前工作區與設定檔皆為最新狀態，無需推送。」並結束流程。
@@ -51,7 +51,7 @@ description: 自動將 Antigravity 工作區、教案與全域設定檔（config
 當使用者指示要從 GitHub 取回或更新設定時，請依照以下步驟執行：
 
 1. **拉取遠端最新變更**：
-   - 於 `d:\Antigravity` 目錄下執行：
+   - 於工作區根目錄下執行：
      ```powershell
      git pull origin main
      ```
@@ -60,7 +60,7 @@ description: 自動將 Antigravity 工作區、教案與全域設定檔（config
 2. **自動還原全域設定檔**：
    - 無論是否有新的 git pull，皆執行匯入還原腳本，以確保本地 `~/.gemini/config/` 與專案保持一致：
      ```powershell
-     powershell -ExecutionPolicy Bypass -File d:\Antigravity\scripts\import_config.ps1
+     powershell -ExecutionPolicy Bypass -File .\scripts\import_config.ps1
      ```
    - 腳本會自動將當前舊設定備份到快照資料夾，並安全覆蓋還原 `config.json`、`mcp_config.json`、`plugins/` 與 `skills/`。
 3. **回報成果與重啟提醒**：

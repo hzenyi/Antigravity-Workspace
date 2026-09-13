@@ -1,4 +1,4 @@
-{
+﻿{
   "mcpServers": {
     "google-calendar": {
       "command": "cmd.exe",
@@ -9,7 +9,7 @@
         "@cocal/google-calendar-mcp"
       ],
       "env": {
-        "GOOGLE_OAUTH_CREDENTIALS": "C:\\Users\\user\\.config\\google-calendar-mcp\\gcp-oauth.keys.json"
+        "GOOGLE_OAUTH_CREDENTIALS": "C:\\Users\\hzenyi\\.config\\google-calendar-mcp\\gcp-oauth.keys.json"
       }
     }
   }

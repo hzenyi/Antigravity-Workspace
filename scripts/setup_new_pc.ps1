@@ -1,4 +1,4 @@
-# ==============================================================================
+﻿# ==============================================================================
 # setup_new_pc.ps1
 # 功能：新電腦 (電腦 B) 一鍵初次啟用 Antigravity 工作區與設定檔部署
 # ==============================================================================
@@ -23,12 +23,32 @@ if (-not $gitPath) {
 }
 Write-Host "[V] 偵測到 Git 環境就緒。" -ForegroundColor Green
 
-# 2. 決定安裝路徑 (預設 D:\91_Antigravity，若無 D 槽則使用 C:\Antigravity)
-$TargetDir = "D:\91_Antigravity"
-if (-not (Test-Path "D:\")) {
-    Write-Warning "這台電腦沒有 D 槽，將自動安裝於 C:\Antigravity"
-    $TargetDir = "C:\Antigravity"
+# 2. 決定安裝路徑 (智慧偵測 Google Drive 掛載槽位或自訂)
+Write-Host ""
+Write-Host "[2/3] 正在偵測雲端硬碟掛載位置..." -ForegroundColor Cyan
+
+$TargetDir = $null
+$AllDrives = Get-PSDrive -PSProvider FileSystem | Select-Object -ExpandProperty Root
+foreach ($drv in $AllDrives) {
+    $driveCandidate = Join-Path $drv "我的雲端硬碟"
+    if (Test-Path $driveCandidate) {
+        $TargetDir = Join-Path $driveCandidate "91_Antigravity"
+        Write-Host " [V] 偵測到 Google 雲端硬碟槽位: $drv" -ForegroundColor Green
+        break
+    }
 }
+
+if (-not $TargetDir) {
+    $TargetDir = Join-Path $env:USERPROFILE "Antigravity\91_Antigravity"
+    Write-Host " 未偵測到預設雲端硬碟，建議安裝於: $TargetDir" -ForegroundColor Yellow
+}
+
+Write-Host " 預定安裝/同步目標路徑：$TargetDir" -ForegroundColor White
+$userInput = Read-Host " 若需變更安裝路徑請直接輸入（按 Enter 鍵直接採用上述路徑）"
+if (-not [string]::IsNullOrWhiteSpace($userInput)) {
+    $TargetDir = $userInput.Trim()
+}
+Write-Host " [V] 確認安裝路徑: $TargetDir" -ForegroundColor Green
 
 # 3. 下載或更新儲存庫
 Write-Host ""
