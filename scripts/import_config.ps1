@@ -32,9 +32,34 @@ if (Test-Path $TargetConfigDir) {
 
 # 1. 還原設定檔與動態調整
 $ConfigFile = Join-Path $SourceBackupDir "config.json"
+$targetConfigFile = Join-Path $TargetConfigDir "config.json"
 if (Test-Path $ConfigFile) {
-    Copy-Item -Path $ConfigFile -Destination $TargetConfigDir -Force
-    Write-Host " [V] 已還原設定檔: config.json" -ForegroundColor Green
+    if (Test-Path $targetConfigFile) {
+        try {
+            $localConfig = Get-Content $targetConfigFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $backupConfig = Get-Content $ConfigFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            
+            # 保留本機主機名稱
+            if ($localConfig.userSettings.remoteControlHostname) {
+                $backupConfig.userSettings.remoteControlHostname = $localConfig.userSettings.remoteControlHostname
+            }
+            
+            # 聯集整併權限白名單 (Union Permission Grants)
+            $localAllows = @($localConfig.userSettings.globalPermissionGrants.allow)
+            $backupAllows = @($backupConfig.userSettings.globalPermissionGrants.allow)
+            $mergedAllows = ($localAllows + $backupAllows) | Select-Object -Unique
+            $backupConfig.userSettings.globalPermissionGrants.allow = $mergedAllows
+            
+            $backupConfig | ConvertTo-Json -Depth 10 | Set-Content -Path $targetConfigFile -Encoding UTF8
+            Write-Host " [V] 已還原設定檔（智慧保留本機主機名稱與權限白名單）: config.json" -ForegroundColor Green
+        } catch {
+            Copy-Item -Path $ConfigFile -Destination $TargetConfigDir -Force
+            Write-Host " [V] 已還原設定檔: config.json" -ForegroundColor Green
+        }
+    } else {
+        Copy-Item -Path $ConfigFile -Destination $TargetConfigDir -Force
+        Write-Host " [V] 已還原設定檔: config.json" -ForegroundColor Green
+    }
 }
 
 $McpFile = Join-Path $SourceBackupDir "mcp_config.json"
@@ -64,7 +89,7 @@ if (Test-Path $SrcPluginsDir) {
     if (-not (Test-Path $TargetPluginsDir)) {
         New-Item -ItemType Directory -Path $TargetPluginsDir -Force | Out-Null
     }
-    Copy-Item -Path "$SrcPluginsDir\*" -Destination $TargetPluginsDir -Recurse -Force
+    $null = robocopy $SrcPluginsDir $TargetPluginsDir /E /MT:8 /NDL /NFL /NJH /NJS
     Write-Host " [V] 外掛 (plugins/) 還原完成！" -ForegroundColor Green
 }
 
@@ -78,12 +103,12 @@ if (Test-Path $SrcSkillsDir) {
     if (-not (Test-Path $TargetSkillsDir)) {
         New-Item -ItemType Directory -Path $TargetSkillsDir -Force | Out-Null
     }
-    Copy-Item -Path "$SrcSkillsDir\*" -Destination $TargetSkillsDir -Recurse -Force
+    $null = robocopy $SrcSkillsDir $TargetSkillsDir /E /MT:8 /NDL /NFL /NJH /NJS
 
     if (-not (Test-Path $WorkspaceSkillsDir)) {
         New-Item -ItemType Directory -Path $WorkspaceSkillsDir -Force | Out-Null
     }
-    Copy-Item -Path "$SrcSkillsDir\*" -Destination $WorkspaceSkillsDir -Recurse -Force
+    $null = robocopy $SrcSkillsDir $WorkspaceSkillsDir /E /MT:8 /NDL /NFL /NJH /NJS
     Write-Host " [V] 自訂技能 (skills/) 已同步還原至全域與專案工作區！" -ForegroundColor Green
 }
 
