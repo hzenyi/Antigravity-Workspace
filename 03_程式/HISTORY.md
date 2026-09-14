@@ -1,6 +1,29 @@
-﻿# 程式研發領域歷程記錄 (03_程式 / HISTORY.md)
+# 程式研發領域歷程記錄 (03_程式 / HISTORY.md)
 
 本文件依據全域規範記錄 `03_程式` 目錄下所有軟硬體研發、AI 專案與工具腳本之重要里程碑與變更歷程。
+
+---
+
+## [1.1.0] - 2026-09-14T08:24:00+08:00
+### 工作背景與任務需求
+- 執行跨電腦自 GitHub 取回設定檔與還原流程（依據 `antigravity-github-sync` SOP）。
+- 解決跨電腦還原時可能發生的主機名稱被覆蓋、權限白名單遺失以及大量檔案同步耗時問題。
+
+### 執行內容與技術關鍵
+- **升級 `scripts/import_config.ps1`**：
+  1. **智慧整併 `config.json`**：動態保留當前本機之 `remoteControlHostname`，並將兩台電腦的 `globalPermissionGrants` 權限白名單自動進行聯集（Union），避免重複提示授權。
+  2. **高速多線程同步**：將外掛與自訂技能之複製機制由 `Copy-Item` 升級為 `robocopy /E /MT:8`，大幅提升包含 `node_modules` 與龐大資源庫時的同步效能。
+  3. **編碼防護**：確保 PowerShell 5.1 在繁體中文環境下能精準解析帶有 BOM 之 UTF-8 腳本。
+- **執行取回與還原**：
+  - 驗證 `git pull origin main` 確保版本庫為最新。
+  - 執行 `import_config.ps1` 自動建立快照備份（`config_backup_20260914_082312`），並成功將 `config.json`、`mcp_config.json`、6 組外掛與 5 組自訂技能還原至本機全域環境。
+
+### 異動檔案清單
+- `scripts/import_config.ps1` (更新)
+- `03_程式/HISTORY.md` (更新)
+
+### 驗證方式與成果摘要
+- 執行 `import_config.ps1` 正常結束（Exit Code 0），全域環境驗證通過。
 
 ---
 
