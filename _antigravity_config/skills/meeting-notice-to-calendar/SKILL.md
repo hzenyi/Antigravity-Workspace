@@ -43,8 +43,10 @@ description: 當使用者拍照上傳「開會通知單」或提供一段會議�
                │
                ▼
 【4. 使用者明確同意後，正式建立 Google 行事曆事件】
-   • 呼叫 Google Calendar 服務線上寫入雲端日曆（並產出備援 .ics 檔）
-   • 回報建立成功結果與日曆連結
+   • 透過原生專屬腳本直接呼叫 Google Calendar API 寫入雲端日曆（無感背景同步）
+   • 無需額外產出本機 .ics 檔案，除非使用者主動要求
+   • 自動處理 Token 過期刷新機制
+   • 回報建立成功結果與 Google 日曆專屬連結
 ```
 
 ---
@@ -110,7 +112,10 @@ description: 當使用者拍照上傳「開會通知單」或提供一段會議�
 - **目標行事曆選擇**：
   - 預設寫入「使用者自己帳號的主要行事曆 (`primary`)」。
   - 若使用者回覆指定其他行事曆（如教務處公務日曆），則寫入指定日曆。
-- **調用 Google Calendar 工具**：透過 `google-calendar` 之 `create-event` 寫入線上日曆，並同步產出備援 `.ics` 檔。
+- **執行直寫腳本**：
+  - 使用內建腳本：`node .agents/skills/meeting-notice-to-calendar/scripts/add_calendar_event.js "<JSON payload>"`
+  - 該腳本會讀取 `~/.config/google-calendar-mcp/` 下的金鑰與 tokens，並在 Access Token 過期時自動用 Refresh Token 刷新換證。
+  - **預設不產出本機 `.ics` 檔案**，維持工作區極簡乾淨。
 
 #### 6. 回報結果
 建立完成後，清楚回報：
@@ -118,4 +123,4 @@ description: 當使用者拍照上傳「開會通知單」或提供一段會議�
 - 🗓️ 日期時間
 - 📍 地點
 - 📅 已寫入之行事曆名稱
-- 🔗 Google 行事曆事件專屬連結
+- 🔗 Google 行事曆事件專屬網頁連結（點擊可直接在日曆檢視）
