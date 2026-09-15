@@ -50,7 +50,9 @@ if (Test-Path $ConfigFile) {
             $mergedAllows = ($localAllows + $backupAllows) | Select-Object -Unique
             $backupConfig.userSettings.globalPermissionGrants.allow = $mergedAllows
             
-            $backupConfig | ConvertTo-Json -Depth 10 | Set-Content -Path $targetConfigFile -Encoding UTF8
+            $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+            $jsonContent = $backupConfig | ConvertTo-Json -Depth 10
+            [System.IO.File]::WriteAllText($targetConfigFile, $jsonContent, $utf8NoBom)
             Write-Host " [V] 已還原設定檔（智慧保留本機主機名稱與權限白名單）: config.json" -ForegroundColor Green
         } catch {
             Copy-Item -Path $ConfigFile -Destination $TargetConfigDir -Force
@@ -70,7 +72,8 @@ if (Test-Path $McpFile) {
     # 將任何形如 C:\\Users\\...\\.config\\google-calendar-mcp 動態適應為當前本機路徑
     $mcpFixed = [regex]::Replace($mcpRaw, 'C:\\\\Users\\\\[^\\]+\\\\.config\\\\google-calendar-mcp', "$escapedUser\\.config\\google-calendar-mcp")
     $targetMcpPath = Join-Path $TargetConfigDir "mcp_config.json"
-    Set-Content -Path $targetMcpPath -Value $mcpFixed -Encoding UTF8
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($targetMcpPath, $mcpFixed, $utf8NoBom)
     
     # 確保 Google 日曆金鑰資料夾存在
     $calConfigDir = Join-Path $UserProfile ".config\google-calendar-mcp"
@@ -89,7 +92,7 @@ if (Test-Path $SrcPluginsDir) {
     if (-not (Test-Path $TargetPluginsDir)) {
         New-Item -ItemType Directory -Path $TargetPluginsDir -Force | Out-Null
     }
-    $null = robocopy $SrcPluginsDir $TargetPluginsDir /E /MT:8 /NDL /NFL /NJH /NJS
+    $null = robocopy $SrcPluginsDir $TargetPluginsDir /E /MT:16 /NP /R:1 /W:1 /NDL /NFL /NJH /NJS
     Write-Host " [V] 外掛 (plugins/) 還原完成！" -ForegroundColor Green
 }
 
@@ -103,12 +106,12 @@ if (Test-Path $SrcSkillsDir) {
     if (-not (Test-Path $TargetSkillsDir)) {
         New-Item -ItemType Directory -Path $TargetSkillsDir -Force | Out-Null
     }
-    $null = robocopy $SrcSkillsDir $TargetSkillsDir /E /MT:8 /NDL /NFL /NJH /NJS
+    $null = robocopy $SrcSkillsDir $TargetSkillsDir /E /MT:16 /NP /R:1 /W:1 /NDL /NFL /NJH /NJS
 
     if (-not (Test-Path $WorkspaceSkillsDir)) {
         New-Item -ItemType Directory -Path $WorkspaceSkillsDir -Force | Out-Null
     }
-    $null = robocopy $SrcSkillsDir $WorkspaceSkillsDir /E /MT:8 /NDL /NFL /NJH /NJS
+    $null = robocopy $SrcSkillsDir $WorkspaceSkillsDir /E /MT:16 /NP /R:1 /W:1 /NDL /NFL /NJH /NJS
     Write-Host " [V] 自訂技能 (skills/) 已同步還原至全域與專案工作區！" -ForegroundColor Green
 }
 

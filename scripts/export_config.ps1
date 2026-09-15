@@ -27,9 +27,18 @@ if (-not (Test-Path $TargetBackupDir)) {
 $ConfigFiles = @("config.json", "mcp_config.json")
 foreach ($file in $ConfigFiles) {
     $srcPath = Join-Path $SourceConfigDir $file
+    $destPath = Join-Path $TargetBackupDir $file
     if (Test-Path $srcPath) {
         Copy-Item -Path $srcPath -Destination $TargetBackupDir -Force
-        Write-Host " [V] 已備份設定檔: $file" -ForegroundColor Green
+        # 確保移除 UTF-8 BOM 避免 Antigravity protojson 解析錯誤
+        $bytes = [System.IO.File]::ReadAllBytes($destPath)
+        if ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
+            $newBytes = New-Object byte[] ($bytes.Length - 3)
+            [System.Array]::Copy($bytes, 3, $newBytes, 0, $newBytes.Length)
+            [System.IO.File]::WriteAllBytes($destPath, $newBytes)
+            [System.IO.File]::WriteAllBytes($srcPath, $newBytes)
+        }
+        Write-Host " [V] 已備份設定檔 (UTF-8 無 BOM): $file" -ForegroundColor Green
     }
 }
 
@@ -41,7 +50,7 @@ if (Test-Path $SrcPluginsDir) {
     if (-not (Test-Path $TargetPluginsDir)) {
         New-Item -ItemType Directory -Path $TargetPluginsDir -Force | Out-Null
     }
-    Copy-Item -Path "$SrcPluginsDir\*" -Destination $TargetPluginsDir -Recurse -Force
+    $null = robocopy $SrcPluginsDir $TargetPluginsDir /E /MT:16 /NP /R:1 /W:1 /NDL /NFL /NJH /NJS
     Write-Host " [V] 外掛 (plugins/) 同步完成！" -ForegroundColor Green
 }
 
@@ -57,13 +66,13 @@ if (-not (Test-Path $TargetSkillsDir)) {
 # 1. 將專案工作區的 .agents/skills 匯入備份庫
 if (Test-Path $WorkspaceSkillsDir) {
     Write-Host " 正在備份工作區技能 (.agents/skills/)..." -ForegroundColor Yellow
-    Copy-Item -Path "$WorkspaceSkillsDir\*" -Destination $TargetSkillsDir -Recurse -Force
+    $null = robocopy $WorkspaceSkillsDir $TargetSkillsDir /E /MT:16 /NP /R:1 /W:1 /NDL /NFL /NJH /NJS
 }
 
 # 2. 將本機全域技能匯入備份庫
 if (Test-Path $SrcSkillsDir) {
     Write-Host " 正在備份全域技能 (~/.gemini/config/skills/)..." -ForegroundColor Yellow
-    Copy-Item -Path "$SrcSkillsDir\*" -Destination $TargetSkillsDir -Recurse -Force
+    $null = robocopy $SrcSkillsDir $TargetSkillsDir /E /MT:16 /NP /R:1 /W:1 /NDL /NFL /NJH /NJS
 }
 
 # 3. 確保本機全域也具備備份庫中的全量技能
@@ -71,7 +80,7 @@ if (Test-Path $TargetSkillsDir) {
     if (-not (Test-Path $SrcSkillsDir)) {
         New-Item -ItemType Directory -Path $SrcSkillsDir -Force | Out-Null
     }
-    Copy-Item -Path "$TargetSkillsDir\*" -Destination $SrcSkillsDir -Recurse -Force
+    $null = robocopy $TargetSkillsDir $SrcSkillsDir /E /MT:16 /NP /R:1 /W:1 /NDL /NFL /NJH /NJS
 }
 
 Write-Host " [V] Skills 技能庫雙向完整同步完成！" -ForegroundColor Green

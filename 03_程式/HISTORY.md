@@ -2,6 +2,31 @@
 
 本文件依據全域規範記錄 `03_程式` 目錄下所有軟硬體研發、AI 專案與工具腳本之重要里程碑與變更歷程。
 
+## [1.2.0] - 2026-09-15T13:38:00+08:00
+### 工作背景與任務需求
+- 排除 Antigravity 啟動時發生的 `config.json: parsing user config: proto: syntax error (line 1:1): invalid value` 崩潰問題。
+- 根治 Windows PowerShell 5.1 匯出/匯入時強加 UTF-8 BOM（`0xEF 0xBB 0xBF`）與 Go `protojson` 解析器衝突之缺陷。
+- 最佳化設定檔與外掛備份同步效能，確保推送到 GitHub 遠端倉庫之設定檔保持純淨無 BOM。
+
+### 執行內容與技術關鍵
+- **修復本機與備份庫設定檔**：
+  - 清除 `config.json` 與 `mcp_config.json` 開頭之 UTF-8 BOM，確認二進位標頭回歸純 ASCII `{`（`0x7B`）。
+- **強化腳本寫入防護與效能**：
+  - `scripts/import_config.ps1`：停用 `Set-Content -Encoding UTF8`，改採 `[System.Text.UTF8Encoding]($false)` 無 BOM 寫入；同步參數加入 `/NP /R:1 /W:1 /MT:16` 防止鎖檔延遲。
+  - `scripts/export_config.ps1`：加入自動偵測與切除 BOM 之過濾防線；複製機制由 `Copy-Item` 全面升級為多執行緒 `robocopy /MT:16 /NP /R:1 /W:1`，數秒內完成 3,000+ 個外掛與技能零碎檔案同步。
+- **全域同步檢核**：
+  - 驗證匯出與還原流程，確認產出檔案皆為純 UTF-8 無 BOM。
+
+### 異動檔案清單
+- `_antigravity_config/config.json` (移除 BOM)
+- `_antigravity_config/mcp_config.json` (移除 BOM)
+- `scripts/import_config.ps1` (更新)
+- `scripts/export_config.ps1` (更新)
+- `03_程式/HISTORY.md` (更新)
+
+### 驗證方式與成果摘要
+- 執行 `export_config.ps1` 正常結束（Exit Code 0），二進位檢查無 BOM，檔案結構與白名單權限完整。
+
 ---
 
 ## [1.1.0] - 2026-09-14T08:24:00+08:00
