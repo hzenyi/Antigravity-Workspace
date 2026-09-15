@@ -1,28 +1,41 @@
-{
-  "userSettings": {
-    "artifactReviewMode": "ARTIFACT_REVIEW_MODE_TURBO",
-    "autoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_EAGER",
-    "enableTerminalSandbox": false,
-    "globalPermissionGrants": {
-      "allow": [
-        "command(powershell -Command \"\n$gitCmd = Get-Command git -ErrorAction SilentlyContinue\nif ($gitCmd) {\n    Write-Host '=== Git in PATH ==='\n    Write-Host ('Source: ' + $gitCmd.Source)\n    \u0026 git --version\n} else {\n    Write-Host '=== Git not found in PATH ==='\n}\n\nWrite-Host '`n=== Checking Common Locations ==='\n$locations = @(\n    '$env:ProgramFiles\\Git\\cmd\\git.exe',\n    '${env:ProgramFiles(x86)}\\Git\\cmd\\git.exe',\n    '$env:LOCALAPPDATA\\Programs\\Git\\cmd\\git.exe',\n    '$env:LOCALAPPDATA\\GitHubDesktop',\n    '$env:ProgramFiles\\TortoiseGit\\bin\\TortoiseGitProc.exe'\n)\nforeach ($loc in $locations) {\n    $expanded = $ExecutionContext.InvokeCommand.ExpandString($loc)\n    if (Test-Path $expanded) {\n        Write-Host ('Found: ' + $expanded)\n    }\n}\n\")",
-        "command(npm)",
-        "command(powershell)",
-        "command(py)",
-        "command(python)",
-        "command(where)",
-        "command(winget)",
-        "command(git)",
-        "command(git --version; Get-Command git-gui, gitk, gh -ErrorAction SilentlyContinue | Select-Object Name, Source)",
-        "command(Test-Path \"C:\\Program Files\\Git\\bin\\bash.exe\"; Test-Path \"$env:LOCALAPPDATA\\GitHubDesktop\")",
-        "command(git config --list --global)",
-        "read_url(w3.sivs.chc.edu.tw)",
-        "read_url(sivs.chc.edu.tw)"
-      ]
-    },
-    "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
-    "remoteControlEnabled": true,
-    "remoteControlHostname": "desktop-vvqm7qm-noble-halo",
-    "themeMode": "THEME_MODE_INHERIT"
-  }
+﻿{
+    "userSettings":  {
+                         "artifactReviewMode":  "ARTIFACT_REVIEW_MODE_TURBO",
+                         "autoExecutionPolicy":  "CASCADE_COMMANDS_AUTO_EXECUTION_EAGER",
+                         "enableTerminalSandbox":  false,
+                         "globalPermissionGrants":  {
+                                                        "allow":  [
+                                                                      "command(py -c \u0027\nimport subprocess, json, sys\n\nsys.stdout.reconfigure(encoding=\"utf-8\")\nurl = \"https://www.youtube.com/@sensebar/videos\"\ncmd = [\"yt-dlp\", \"--flat-playlist\", \"-J\", url]\nprint(\"Fetching video list from @sensebar...\")\nres = subprocess.run(cmd, capture_output=True, text=True, encoding=\"utf-8\")\nif res.returncode != 0:\n    print(\"Error:\", res.stderr)\n    sys.exit(1)\n\ndata = json.loads(res.stdout)\nentries = data.get(\"entries\", [])\nprint(f\"Total videos found: {len(entries)}\")\n\nkeywords = [\"claude\", \"codex\", \"antigravity\", \"opencode\", \"open code\"]\nmatched = []\nfor entry in entries:\n    title = entry.get(\"title\", \"\")\n    video_id = entry.get(\"id\", \"\")\n    url = f\"https://www.youtube.com/watch?v={video_id}\"\n    lower_title = title.lower()\n    for kw in keywords:\n        if kw in lower_title:\n            matched.append((entry, kw))\n            break\n\nprint(f\"Matched videos: {len(matched)}\")\nfor entry, kw in matched:\n    print(f\"- [{kw}] {entry.get(\\\"title\\\")} -\u003e https://www.youtube.com/watch?v={entry.get(\\\"id\\\")}\")\n\u0027)",
+                                                                      "command(py -c \u0027\nimport json\nwith open(\"sensebar_matched.json\", \"r\", encoding=\"utf-8\") as f:\n    data = json.load(f)\nmatched_ids = {item[\"id\"] for item in data[\"matched\"]}\n\nimport subprocess\ncmd = [\"yt-dlp\", \"--flat-playlist\", \"-J\", \"https://www.youtube.com/@sensebar/videos\"]\nres = subprocess.run(cmd, capture_output=True, text=True, encoding=\"utf-8\", errors=\"replace\")\nentries = json.loads(res.stdout).get(\"entries\", [])\n\nprint(\"Unmatched entries that might be related:\")\nrelated_words = [\"ai\", \"agent\", \"gpt\", \"code\", \"gemini\", \"cursor\", \"copilot\"]\nfor entry in entries:\n    if entry[\"id\"] not in matched_ids:\n        title = entry.get(\"title\", \"\")\n        lt = title.lower()\n        if any(w in lt for w in related_words):\n            print(f\"- {title} (id: {entry[\\\"id\\\"]})\")\n\u0027)",
+                                                                      "command(py -c \u0027\nimport json\nwith open(\"sensebar_target_videos.json\", \"r\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\nfor cat, vids in data[\"by_category\"].items():\n    print(f\"=== {cat} ({len(vids)}) ===\")\n    for v in vids:\n        print(f\"{v[\\\"title\\\"]} | {v[\\\"url\\\"]}\")\n\u0027)",
+                                                                      "read_url(youtube.com)",
+                                                                      "command(git)",
+                                                                      "command(npm)",
+                                                                      "command(py)",
+                                                                      "command(python)",
+                                                                      "command(where)",
+                                                                      "command(winget)",
+                                                                      "command(powershell)",
+                                                                      "read_url(github.com)",
+                                                                      "read_url(prodocs.lceda.cn)",
+                                                                      "mcp(google-calendar/list-calendars)",
+                                                                      "mcp(google-calendar/create-event)",
+                                                                      "mcp(google-calendar/update-event)",
+                                                                      "mcp(google-calendar/list-events)",
+                                                                      "mcp(google-calendar/delete-event)",
+                                                                      "read_url(docs.google.com)",
+                                                                      "read_url(law.moe.gov.tw)",
+                                                                      "command(powershell -Command \"\n$gitCmd = Get-Command git -ErrorAction SilentlyContinue\nif ($gitCmd) {\n    Write-Host \u0027=== Git in PATH ===\u0027\n    Write-Host (\u0027Source: \u0027 + $gitCmd.Source)\n    \u0026 git --version\n} else {\n    Write-Host \u0027=== Git not found in PATH ===\u0027\n}\n\nWrite-Host \u0027`n=== Checking Common Locations ===\u0027\n$locations = @(\n    \u0027$env:ProgramFiles\\Git\\cmd\\git.exe\u0027,\n    \u0027${env:ProgramFiles(x86)}\\Git\\cmd\\git.exe\u0027,\n    \u0027$env:LOCALAPPDATA\\Programs\\Git\\cmd\\git.exe\u0027,\n    \u0027$env:LOCALAPPDATA\\GitHubDesktop\u0027,\n    \u0027$env:ProgramFiles\\TortoiseGit\\bin\\TortoiseGitProc.exe\u0027\n)\nforeach ($loc in $locations) {\n    $expanded = $ExecutionContext.InvokeCommand.ExpandString($loc)\n    if (Test-Path $expanded) {\n        Write-Host (\u0027Found: \u0027 + $expanded)\n    }\n}\n\")",
+                                                                      "command(git --version; Get-Command git-gui, gitk, gh -ErrorAction SilentlyContinue | Select-Object Name, Source)",
+                                                                      "command(Test-Path \"C:\\Program Files\\Git\\bin\\bash.exe\"; Test-Path \"$env:LOCALAPPDATA\\GitHubDesktop\")",
+                                                                      "command(git config --list --global)",
+                                                                      "read_url(w3.sivs.chc.edu.tw)",
+                                                                      "read_url(sivs.chc.edu.tw)"
+                                                                  ]
+                                                    },
+                         "nonWorkspaceFileAccessPolicy":  "AGENT_SETTING_POLICY_ALLOW",
+                         "remoteControlEnabled":  true,
+                         "remoteControlHostname":  "教務處",
+                         "themeMode":  "THEME_MODE_INHERIT"
+                     }
 }
